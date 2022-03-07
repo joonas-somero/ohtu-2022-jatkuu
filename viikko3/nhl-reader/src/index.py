@@ -25,11 +25,11 @@ def main():
         players.append(player)
 
     nationality = "FIN"
-    print(f"Players from {nationality} {datetime.now()}\n")
+    finnish_players = filter(lambda p: p.nationality == nationality, players)
 
-    for player in players:
-        if player.nationality == nationality:
-            print(player)
+    print(f"Players from {nationality} {datetime.now()}\n")
+    for player in sorted(finnish_players, key=lambda p: p.points, reverse=True):
+        print(player)
 
 
 if __name__ == "__main__":
