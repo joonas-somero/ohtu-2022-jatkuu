@@ -1,34 +1,14 @@
-import requests
-from datetime import datetime
-from player import Player
+from player_reader import PlayerReader
+from player_stats import PlayerStats
+
 
 def main():
     url = "https://nhlstatisticsforohtu.herokuapp.com/players"
-    response = requests.get(url).json()
+    reader = PlayerReader(url)
+    stats = PlayerStats(reader)
+    players = stats.top_scorers_by_nationality("FIN")
 
-#    print("JSON-muotoinen vastaus:")
-#    print(response)
-
-    players = []
-
-    for player_dict in response:
-        player = Player(
-            player_dict['name'],
-            player_dict['nationality'],
-            player_dict['assists'],
-            player_dict['goals'],
-            player_dict['penalties'],
-            player_dict['team'],
-            player_dict['games']
-        )
-
-        players.append(player)
-
-    nationality = "FIN"
-    finnish_players = filter(lambda p: p.nationality == nationality, players)
-
-    print(f"Players from {nationality} {datetime.now()}\n")
-    for player in sorted(finnish_players, key=lambda p: p.points, reverse=True):
+    for player in players:
         print(player)
 
 
