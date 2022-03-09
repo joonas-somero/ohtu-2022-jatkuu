@@ -1,0 +1,8 @@
+1646824574321	geckodriver	INFO	Listening on 127.0.0.1:44355
+1646824574325	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofile0LY5sH"
+1646824574841	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile0LY5sH/search.json.mozlz4", (void 0)))
+1646824575993	Marionette	INFO	Listening on port 36351
+1646824576044	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1646824576352	Marionette	INFO	Stopped listening on port 36351
+JavaScript error: resource://gre/modules/BackgroundPageThumbs.jsm, line 732: TypeError: captureCallback is not a function

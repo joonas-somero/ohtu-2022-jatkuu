@@ -1,0 +1,16 @@
+1646824716531	geckodriver	INFO	Listening on 127.0.0.1:42355
+1646824716535	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileb4uPvn"
+1646824717143	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileb4uPvn/search.json.mozlz4", (void 0)))
+1646824718358	Marionette	INFO	Listening on port 37983
+1646824718489	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1646824724078	Marionette	INFO	Stopped listening on port 37983
+
+###!!! [Child][PContentChild] Error: RunMessage(msgname=PContent::Reply_DiscardBrowsingContext) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][PContentChild] Error: RunMessage(msgname=PContent::Msg_DestroyBrowsingContextGroup) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
+

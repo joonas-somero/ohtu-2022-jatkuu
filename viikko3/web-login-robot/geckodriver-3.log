@@ -1,0 +1,9 @@
+1646824010835	geckodriver	INFO	Listening on 127.0.0.1:51229
+1646824010839	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofile1E6Mdk"
+1646824011441	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile1E6Mdk/search.json.mozlz4", (void 0)))
+1646824012584	Marionette	INFO	Listening on port 43729
+1646824012657	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1646824012955	Marionette	INFO	Stopped listening on port 43729
+JavaScript error: resource://gre/modules/BackgroundPageThumbs.jsm, line 732: TypeError: captureCallback is not a function
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 718: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "DoHController: clear state and remove observers"

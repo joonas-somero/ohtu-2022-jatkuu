@@ -1,0 +1,12 @@
+1646824519046	geckodriver	INFO	Listening on 127.0.0.1:56027
+1646824519050	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileXhz4sp"
+1646824519665	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileXhz4sp/search.json.mozlz4", (void 0)))
+1646824520810	Marionette	INFO	Listening on port 35743
+1646824520869	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1646824521201	Marionette	INFO	Stopped listening on port 35743
+console.warn: services.settings: main/query-stripping sync interrupted by shutdown
+JavaScript error: resource://gre/modules/BackgroundPageThumbs.jsm, line 732: TypeError: captureCallback is not a function
+
+###!!! [Parent][PContentParent] Error: Send(msgname=PContent::Msg_DestroyBrowsingContextGroup) Closed channel: cannot send/recv
+
