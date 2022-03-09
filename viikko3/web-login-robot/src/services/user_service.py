@@ -1,3 +1,4 @@
+from re import match
 from entities.user import User
 from repositories.user_repository import (
     user_repository as default_user_repository
@@ -42,5 +43,13 @@ class UserService:
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
 
+        if not match("^[a-z]{3,}$", username):
+            raise UserInputError("Username is too short or contains invalid characters")
+
+        if not match("(?=.*[^a-z]+)(?=.{8,})", password):
+            raise UserInputError("Password must be atleast 8 characters long and contain atleast 1 non-alphabetic character")
+
+        if password != password_confirmation:
+            raise UserInputError("Password does not match confirmation")
 
 user_service = UserService()
