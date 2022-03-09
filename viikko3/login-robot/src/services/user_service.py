@@ -1,3 +1,4 @@
+from re import match
 from entities.user import User
 
 
@@ -38,3 +39,9 @@ class UserService:
             raise UserInputError("Username and password are required")
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+
+        if not match("^[a-z]{3,}$", username):
+            raise UserInputError("Username is too short or contains invalid characters")
+
+        if not match("(?=.*[^a-z]+)(?=.{8,})", password):
+            raise UserInputError("Password must be atleast 8 characters long and contain atleast 1 non-alphabetic character")
