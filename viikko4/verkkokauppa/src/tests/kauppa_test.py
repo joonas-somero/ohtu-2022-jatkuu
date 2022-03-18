@@ -86,3 +86,37 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.tilimaksu(*self.asiakas.values())
 
         self.pankki_mock.tilisiirto.assert_called_with(self.asiakas["nimi"], ANY, self.asiakas["tilinumero"], ANY, 5)
+
+
+    def test_kaupan_metodi_aloita_asiointi_nollaa_edellisen_ostoksen_tiedot(self):
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.tilimaksu(*self.asiakas.values())
+
+        self.pankki_mock.tilisiirto.assert_called_with(*([ANY]*4), 8)
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu(*self.asiakas.values())
+
+        self.pankki_mock.tilisiirto.assert_called_with(*([ANY]*4), 5)
+
+
+    def test_kauppa_pyytaa_uuden_viitenumeron_jokaiselle_maksutapahtumalle(self):
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu(*self.asiakas.values())
+
+        self.assertEqual(self.viitegeneraattori_mock.uusi.call_count, 1)
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.tilimaksu(*self.asiakas.values())
+
+        self.assertEqual(self.viitegeneraattori_mock.uusi.call_count, 2)
+
+
+    def test_tuotteen_poistaminen_ostoskorista_kutsuu_varaston_metodia_palauta_varastoon(self):
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.poista_korista(1)
+
+        self.varasto_mock.palauta_varastoon.assert_called_with(self.varasto_hae_tuote(1))
