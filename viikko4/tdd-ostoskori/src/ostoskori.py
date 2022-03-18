@@ -14,7 +14,7 @@ class Ostoskori:
 
     def hinta(self):
         # kertoo korissa olevien ostosten yhteenlasketun hinnan
-        return 0
+        return sum(ostos.hinta() for ostos in self.ostokset)
 
     def lisaa_tuote(self, lisattava: Tuote):
         # lisää tuotteen
