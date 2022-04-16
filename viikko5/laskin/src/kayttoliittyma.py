@@ -1,6 +1,5 @@
 from enum import Enum
-from tkinter import ttk, constants, StringVar
-
+from tkinter import DISABLED, ttk, constants, StringVar
 
 
 class Komento(Enum):
@@ -10,36 +9,39 @@ class Komento(Enum):
     KUMOA = 4
 
 class Summa:
-    def __init__(self, sovellus, io):
-        self._sovelluslogiikka = sovellus
+    def __init__(self, sovelluslogiikka, io):
+        self._sovelluslogiikka = sovelluslogiikka
         self.io = io
     
     def suorita(self):
+        self._sovelluslogiikka.historia_sisaan()
         syote = int(self.io())
         self._sovelluslogiikka.plus(syote)
 
 class Erotus:
-    def __init__(self, sovellus, io):
-        self._sovelluslogiikka = sovellus
+    def __init__(self, sovelluslogiikka, io):
+        self._sovelluslogiikka = sovelluslogiikka
         self.io = io
     
     def suorita(self):
+        self._sovelluslogiikka.historia_sisaan()
         syote = int(self.io())
         self._sovelluslogiikka.miinus(syote)
 
 class Nollaus:
-    def __init__(self, sovellus):
-        self._sovelluslogiikka = sovellus
+    def __init__(self, sovelluslogiikka):
+        self._sovelluslogiikka = sovelluslogiikka
 
     def suorita(self):
+        self._sovelluslogiikka.historia_sisaan()
         self._sovelluslogiikka.nollaa()
 
 class Kumoa:
-    def __init__(self):
-        pass
+    def __init__(self, sovelluslogiikka):
+        self._sovelluslogiikka = sovelluslogiikka
     
     def suorita(self):
-        pass
+        self._sovelluslogiikka.historia_ulos()
 
 class Kayttoliittyma:
     def __init__(self, sovelluslogiikka, root):
@@ -50,7 +52,7 @@ class Kayttoliittyma:
             Komento.SUMMA: Summa(sovelluslogiikka, self._lue_syote),
             Komento.EROTUS: Erotus(sovelluslogiikka, self._lue_syote),
             Komento.NOLLAUS: Nollaus(sovelluslogiikka),
-            Komento.KUMOA: Kumoa()
+            Komento.KUMOA: Kumoa(sovelluslogiikka)
         }
 
     def kaynnista(self):
@@ -99,7 +101,11 @@ class Kayttoliittyma:
     def _suorita_komento(self, komento):
         komento_olio = self._komennot[komento]
         komento_olio.suorita()
-        self._kumoa_painike["state"] = constants.NORMAL
+
+        if len(self._sovelluslogiikka.historia) > 0:
+            self._kumoa_painike["state"] = constants.NORMAL
+        else:
+            self._kumoa_painike["state"] = constants.DISABLED
 
         if self._sovelluslogiikka.tulos == 0:
             self._nollaus_painike["state"] = constants.DISABLED
